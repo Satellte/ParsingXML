@@ -8,7 +8,7 @@ import static Parcer.Parser.parseTags;
 
 public class Main {
     public static void main(String[] args) {
-        File inputText = new File("./test.txt");
+        File inputText = new File("./src/Parcer/test.txt");
         Scanner scanner = null;
         try {
             scanner = new Scanner(inputText);

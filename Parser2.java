@@ -10,10 +10,10 @@ public class Parser2 {
         StringBuilder outPut = new StringBuilder(); //вывод строки
         while (matcher.find()) {
             boolean haveAttribute = false;
-            boolean haveValue = false;
+//            boolean haveValue = false;
 
             StringBuilder attributes = new StringBuilder(); //вырзанная строка с XML
-            StringBuilder value = new StringBuilder(); //значение между >< не XML
+//            StringBuilder value = new StringBuilder(); //значение между >< не XML
 
             String tagName = matcher.group(1);  //извлекаем имя тега
             String attribute = matcher.group(2); //извлекаем атрибуты тэга
@@ -27,16 +27,17 @@ public class Parser2 {
                 attributes.append(attributeName).append(" = \"").append(attributeValue).append("\"\n");
             }
             if(!haveAttribute){
-            outPut.append("Element:\n" +
-                    "path = " + tagName + "\n\n");
+            outPut.append("Element:\n" + "path = ")
+                    .append(tagName)
+                    .append("\n\n");
             } else {
-                outPut.append("Element:\n" +
-                        "path = " + tagName +
-                        "\n" + "attributes: \n" +
-                        attributes);
+                outPut.append("Element:\n" + "path = ")
+                        .append(tagName).append("\n")
+                        .append("attributes: \n")
+                        .append(attributes);
             }
             StringBuilder parent = new StringBuilder();
-            parent.append(tagName + ", ");
+            parent.append(tagName).append(", ");
             outPut.append(parseSubTags(tagValue, parent));
         }
         return outPut;
@@ -48,10 +49,10 @@ public class Parser2 {
         Matcher matcher = tagPattern.matcher(input);
         while (matcher.find()) {
             boolean haveAttribute = false;
-//            boolean haveValue = false;
+            boolean haveBlankValue = false;
 
             StringBuilder attributes = new StringBuilder(); //вырзанная строка с XML
-            StringBuilder value = new StringBuilder(); //значение между >< не XML
+//            StringBuilder value = new StringBuilder(); //значение между >< не XML
 
             String tagName = matcher.group(1);  //извлекаем имя тега
             String attribute = matcher.group(2); //извлекаем атрибуты тэга
@@ -69,22 +70,46 @@ public class Parser2 {
                 again = true;
             }
 
+            if (tagValue.equals("")) {
+                again = false;
+                haveBlankValue = true;
+            }
+
             if(!haveAttribute){
-                outPut.append("Element:\n" +
-                        "path = " + parent + tagName + "\n");
+                outPut.append("Element:\n" + "path = ")
+                        .append(parent)
+                        .append(tagName)
+                        .append("\n");
             } else if(again) {
-                outPut.append("Element:\n" +
-                        "path = " + parent + tagName +
-                        "\n" + "attributes: \n" +
-                        attributes + "\n");
-            } else if(!again) {
-                outPut.append("Element:\n" +
-                        "path = " + parent + tagName +
-                        "\n" + "value = \"" + tagValue + "\"\nattributes: \n" +
-                        attributes + "\n");
+                outPut.append("Element:\n" + "path = ")
+                        .append(parent)
+                        .append(tagName)
+                        .append("\n")
+                        .append("attributes: \n")
+                        .append(attributes)
+                        .append("\n");
+            } else if(!again && !haveBlankValue) {
+                outPut.append("Element:\n" + "path = ")
+                        .append(parent)
+                        .append(tagName)
+                        .append("\n")
+                        .append("value = \"")
+                        .append(tagValue)
+                        .append("\"\nattributes: \n")
+                        .append(attributes)
+                        .append("\n");
+            } else if(!again && haveBlankValue) {
+                outPut.append("Element:\n" + "path = ")
+                        .append(parent)
+                        .append(tagName)
+                        .append("\n")
+                        .append("attributes: \n")
+                        .append(attributes)
+                        .append("\n");
             }
             if (again) {
-                parent.append(tagName + ", ");
+                parent.append(tagName)
+                        .append(", ");
                 outPut.append(parseSubTags(tagValue, parent));
             }
         }

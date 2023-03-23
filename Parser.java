@@ -1,15 +1,15 @@
 package Parcer;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
     private static final Pattern TAG_PATTERN = Pattern.compile("<([a-zA-Z0-9]+)([^>]*)>(.*?)</\\1>");
-    public static final Pattern AttrPattern = Pattern.compile("([a-zA-Z0-9\\s]+)=\\s?\"([^\"]+)\"");
+    public static final Pattern AttrPattern = Pattern.compile("([a-zA-Z0-9]+)\\s=\\s?\"([^\"]+)\"");
     public static void parseTags(String input) {
         Matcher matcher = TAG_PATTERN.matcher(input);
+        ArrayList<StringBuilder> stringList = new ArrayList<>();
         while (matcher.find()) {
             boolean haveAttribute = false;
             boolean haveValue = false;
@@ -35,11 +35,11 @@ public class Parser {
             }
 
             if (haveValue && haveAttribute){
-                System.out.println("Element:\n" +
+                stringList.add(new StringBuilder("Element:\n" +
                         "path = " + tagName +
                         "\n" + "value = \"" +
                         value + "\"\nattributes: \n" +
-                        attributes);
+                        attributes));
             } else if (haveAttribute && !haveValue) {
                 System.out.println("Element:\n" +
                         "path = " + tagName +
@@ -100,7 +100,6 @@ public class Parser {
         }
 
     }
-
 //    public static List<Tag> parseTags(String input) {
 //        List<Tag> tags = new ArrayList<>();
 //        Matcher matcher = TAG_PATTERN.matcher(input);

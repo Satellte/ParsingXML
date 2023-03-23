@@ -21,7 +21,7 @@ public class Main {
             inputString.append(scanner.nextLine().replace("\n","").replace("    ",""));
         }
         scanner.close();
-
-        parseTags(inputString.toString());
+        System.out.println(inputString);
+        //parseTags(inputString.toString());
     }
 }

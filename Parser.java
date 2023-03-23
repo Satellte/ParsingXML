@@ -21,7 +21,7 @@ public class Parser {
                 if (tagValue.contains("<")) {
                     parseTags(tagValue);
                 } else tag.setTagValue(tagValue);
-        }
+
 
 
             // Извлечение атрибутов

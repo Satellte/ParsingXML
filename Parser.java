@@ -6,8 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
-    private static final Pattern TAG_PATTERN = Pattern.compile("<([a-zA-Z]+)([^>]*)>(.*?)</\\1>");
-    public static final Pattern AttrPattern = Pattern.compile("([a-zA-Z]+)=\"([^\"]+)\"");
+    private static final Pattern TAG_PATTERN = Pattern.compile("<([a-zA-Z0-9]+)([^>]*)>(.*?)</\\1>");
+    public static final Pattern AttrPattern = Pattern.compile("([a-zA-Z0-9\\s]+)=\\s?\"([^\"]+)\"");
     public static void parseTags(String input) {
         Matcher matcher = TAG_PATTERN.matcher(input);
         while (matcher.find()) {

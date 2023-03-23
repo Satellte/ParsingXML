@@ -44,4 +44,17 @@ public class Tag {
     public void setNestedTags(List<Tag> nestedTagList) {
         this.nestedTagList = nestedTagList;
     }
+
+    @Override
+    public String toString() {
+        return "Tag{" +
+                "parent='" + parent + '\'' +
+                ", level='" + level + '\'' +
+                ", tagName='" + tagName + '\'' +
+                ", tagValue='" + tagValue + '\'' +
+                ", attributeName='" + attributeName + '\'' +
+                ", attributeValue='" + attributeValue + '\'' +
+                ", nestedTagList=" + nestedTagList +
+                '}';
+    }
 }

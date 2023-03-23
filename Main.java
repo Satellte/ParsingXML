@@ -4,12 +4,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import static Parcer.Parser.parseTags;
+import static Parcer.Parser2.parseTags;
+
 
 public class Main {
     public static void main(String[] args) {
         File inputText = new File("./src/Parcer/test.txt");
         Scanner scanner = null;
+        StringBuilder vivod = new StringBuilder();
         try {
             scanner = new Scanner(inputText);
         } catch (FileNotFoundException e) {
@@ -21,6 +23,7 @@ public class Main {
             inputString.append(scanner.nextLine().replace("\n","").replace("    ",""));
         }
         scanner.close();
-        parseTags(inputString.toString());
+        vivod.append(parseTags(inputString.toString()));
+        System.out.println(vivod);
     }
 }

@@ -1,2 +1,11 @@
-<tag1><child1 id = "1" name = "child1"><subchild1 id = "1" name = "subchild1">Subchild1</subchild1>
-<subchild2 id = "2" name = "subchild2">Subchild2</subchild2><child2 id = "2" name = "child2">child2</child2></child1></tag1>
+<node>
+    <child name = "child_name1" type = "child_type1">
+        <subchild id = "1" auth="auth1">Value1</subchild>
+    </child>
+    <child name = "child_name2" type = "child_type2">
+        <subchild id = "2" auth="auth1">Value2</subchild>
+        <subchild id = "3" auth="auth2">Value3</subchild>
+        <subchild id = "4" auth="auth3"></subchild>
+        <subchild id = "5" auth="auth3"/>
+    </child>
+</node>

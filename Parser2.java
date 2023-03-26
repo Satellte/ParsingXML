@@ -2,8 +2,14 @@ package Parcer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Parser2 {
+//    private static final Pattern tagPattern = Pattern.compile("<([a-zA-Z0-9]+)([^>]*)>(.*?)</\\1>");
+//    public static final Pattern attrPattern = Pattern.compile("([a-zA-Z0-9]+)\\s?=\\s?\"([^\"]+)\"");
+
+//    private static final Pattern tagPattern = Pattern.compile("<([a-zA-Z0-9]+)([^>]*)>(.*?)</\\1>");
+//    public static final Pattern attrPattern = Pattern.compile("([a-zA-Z0-9]+)\\s?=\\s?\"([^\"]+)\"(/?)");
+
     private static final Pattern tagPattern = Pattern.compile("<([a-zA-Z0-9]+)([^>]*)>(.*?)</\\1>");
-    public static final Pattern attrPattern = Pattern.compile("([a-zA-Z0-9]+)\\s?=\\s?\"([^\"]+)\"");
+    public static final Pattern attrPattern = Pattern.compile("([a-zA-Z0-9]+)\\s?=\\s?\"([^\"]+)\"(/?)");
 
     public static StringBuilder parseTags(String input) {
         Matcher matcher = tagPattern.matcher(input);
@@ -63,6 +69,10 @@ public class Parser2 {
                 haveAttribute = true;
                 String attributeName = attributeMatcher.group(1);
                 String attributeValue = attributeMatcher.group(2);
+                String closes = matcher.group(3); //извлекаем строку между открытием и закрытием тега
+                if (closes.equals("/")){
+                    System.out.println("IS CLOSED");
+                }
                 attributes.append(attributeName).append(" = \"").append(attributeValue).append("\"\n");
             }
 

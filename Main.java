@@ -2,9 +2,11 @@ package Parcer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-import static Parcer.Parser2.parseTags;
+import static Parcer.Parser2.*;
+import static Parcer.Parser.*;
 
 
 public class Main {
@@ -23,7 +25,9 @@ public class Main {
             inputString.append(scanner.nextLine().replace("\n","").replace("    ",""));
         }
         scanner.close();
-        vivod.append(parseTags(inputString.toString()));
+        ArrayList<String> parentPath = new ArrayList<>();
+        vivod.append(parseTags(inputString.toString(), parentPath));
+//        vivod.append(parseTags1(inputString.toString()));
         System.out.println(vivod);
     }
 }

@@ -1,11 +1,17 @@
-<node>
-    <child name = "child_name1" type = "child_type1">
-        <subchild id = "1" auth="auth1">Value1</subchild>
-    </child>
-    <child name = "child_name2" type = "child_type2">
-        <subchild id = "2" auth="auth1">Value2</subchild>
-        <subchild id = "3" auth="auth2">Value3</subchild>
-        <subchild id = "4" auth="auth3"></subchild>
-        <subchild id = "5" auth="auth3"/>
-    </child>
-</node>
+<transaction>
+    <id>6753322</id>
+    <number region="Russia">8-900-000-00-00</number>
+    <nonattr />
+    <nonattr></nonattr>
+    <nonattr>text</nonattr>
+    <attr id="1" />
+    <attr id="2"></attr>
+    <attr id="3">text</attr>
+    <email>
+        <to>to_example@gmail.com</to>
+        <from>from_example@gmail.com</from>
+        <subject>Project discussion</subject>
+        <body font="Verdana">Body message</body>
+        <date day="12" month="12" year="2018"/>
+    </email>
+</transaction>
